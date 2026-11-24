@@ -25,7 +25,7 @@ python skills/xmu-ppt/scripts/svg_to_pptx.py examples/quickstart -s svg_output -
 
 ### 没有 Git
 
-下载 [ZIP 压缩包](https://github.com/Longfei-Tao/xmu-ppt/archive/refs/heads/main.zip)，解压到任意目录，然后在解压出来的目录里建 `.venv` 并安装依赖，步骤与上表一致。
+下载 [ZIP 压缩包](https://github.com/Toby-Tao/xmu-ppt/archive/refs/heads/main.zip)，解压到任意目录，然后在解压出来的目录里建 `.venv` 并安装依赖，步骤与上表一致。
 
 两点区别：
 
@@ -63,7 +63,7 @@ python skills/xmu-ppt/scripts/svg_to_pptx.py examples/quickstart -s svg_output -
 
 在本地选择页查看封面、正文和章节页，选择制作方式，再点击“确认使用此模板”。也可以在聊天中回复模板名称或编号。明确说“你帮我选”即可授权 AI 代选。关闭页面或等待超时后仍需选择。
 
-从 [在线模板画廊](https://longfei-tao.github.io/xmu-ppt/templates/) 浏览时，点击“复制使用指令”，粘贴到 AI 聊天中并填写主题与页数。公开页面的选择通过这条指令传递给 AI。
+从 [在线模板画廊](https://toby-tao.github.io/xmu-ppt/templates/) 浏览时，点击“复制使用指令”，粘贴到 AI 聊天中并填写主题与页数。公开页面的选择通过这条指令传递给 AI。
 
 ### 需要保留原版式时这样说
 

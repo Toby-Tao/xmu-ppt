@@ -21,7 +21,7 @@
 以下提示词用于安装。出稿时再发送主题、材料和页数。
 
 ```text
-请从 https://github.com/Longfei-Tao/xmu-ppt 安装 xmu-ppt 技能。
+请从 https://github.com/Toby-Tao/xmu-ppt 安装 xmu-ppt 技能。
 先读取 README 和 skills/xmu-ppt/SKILL.md，按当前 Agent 的官方机制，
 默认安装到项目范围，保留完整技能目录并核对是否存在同名技能。
 若由 CC Switch 管理共享技能，回到 CC Switch 导入和分发。
@@ -69,14 +69,14 @@ Vercel 的 Skills CLI 支持从 GitHub 仓库发现和安装技能。先安装�
 
 ```bash
 # 先查看可发现的技能
-npx skills add Longfei-Tao/xmu-ppt --list
+npx skills add Toby-Tao/xmu-ppt --list
 
 # 按你的宿主选择一条
-npx skills add Longfei-Tao/xmu-ppt --skill xmu-ppt --agent codex
-npx skills add Longfei-Tao/xmu-ppt --skill xmu-ppt --agent claude-code
-npx skills add Longfei-Tao/xmu-ppt --skill xmu-ppt --agent cursor
-npx skills add Longfei-Tao/xmu-ppt --skill xmu-ppt --agent github-copilot
-npx skills add Longfei-Tao/xmu-ppt --skill xmu-ppt --agent gemini-cli
+npx skills add Toby-Tao/xmu-ppt --skill xmu-ppt --agent codex
+npx skills add Toby-Tao/xmu-ppt --skill xmu-ppt --agent claude-code
+npx skills add Toby-Tao/xmu-ppt --skill xmu-ppt --agent cursor
+npx skills add Toby-Tao/xmu-ppt --skill xmu-ppt --agent github-copilot
+npx skills add Toby-Tao/xmu-ppt --skill xmu-ppt --agent gemini-cli
 ```
 
 此安装器只安装技能文件，仍需用安装后的实际技能路径安装 `requirements-core.txt`。仓库四页验收示例位于 `examples/quickstart`，另行保留完整 checkout 才能运行该示例。项目更新器只适用于原始 Git checkout，安装器副本用其更新机制维护。本次用 Skills CLI 1.7.6 验证了本地源码目录到五类 Agent 的项目级文件分发，实际生成共享 `.agents/skills/` 和 Claude Code 的 `.claude/skills/` 副本。CC Switch 管理的共享技能通过 CC Switch 维护。命令选项及支持的 agent 标识见 [Skills CLI 官方仓库](https://github.com/vercel-labs/skills/blob/main/docs/commands.md)。

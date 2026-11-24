@@ -211,7 +211,7 @@ class GateTests(unittest.TestCase):
              mock.patch.object(flow, "_external_source", return_value=None):
             gate = flow.recommend("癌症科普", "医护健康科普", limit=6)
         self.assertTrue(gate["candidates"])
-        self.assertIn("https://longfei-tao.github.io/xmu-ppt/templates/", gate["markdown"])
+        self.assertIn("https://toby-tao.github.io/xmu-ppt/templates/", gate["markdown"])
         self.assertFalse(any(i.startswith("MED-") for i in gate["candidates"]))
         for item in flow._all_templates():
             if item["id"] in gate["candidates"]:

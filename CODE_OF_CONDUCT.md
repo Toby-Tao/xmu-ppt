@@ -30,7 +30,7 @@
 
 ## 执行
 
-发现违反准则的行为，请在 Issue 中联系维护者（[@Longfei-Tao](https://github.com/Longfei-Tao)）
+发现违反准则的行为，请在 Issue 中联系维护者（[@Toby-Tao](https://github.com/Toby-Tao)）
 获取私下沟通渠道，并附上时间、链接和必要截图。维护者会尽快核实，并按
 情节采取提醒、删除内容、暂时或永久禁止参与等措施。
 

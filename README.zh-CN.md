@@ -1,36 +1,36 @@
 # xmu-ppt · 厦门大学 PPT 模板
 
-[![Version](https://img.shields.io/github/v/release/Longfei-Tao/xmu-ppt?label=version&color=blue)](https://github.com/Longfei-Tao/xmu-ppt/releases)
+[![Version](https://img.shields.io/github/v/release/Toby-Tao/xmu-ppt?label=version&color=blue)](https://github.com/Toby-Tao/xmu-ppt/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![模板](https://img.shields.io/badge/%E6%A8%A1%E6%9D%BF-15%20%E5%A5%97-4661CC)](docs/templates.md)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)](docs/quickstart.md)
-[![CI](https://github.com/Longfei-Tao/xmu-ppt/actions/workflows/validate.yml/badge.svg)](https://github.com/Longfei-Tao/xmu-ppt/actions/workflows/validate.yml)
-[![GitHub stars](https://img.shields.io/github/stars/Longfei-Tao/xmu-ppt.svg)](https://github.com/Longfei-Tao/xmu-ppt/stargazers)
+[![CI](https://github.com/Toby-Tao/xmu-ppt/actions/workflows/validate.yml/badge.svg)](https://github.com/Toby-Tao/xmu-ppt/actions/workflows/validate.yml)
+[![GitHub stars](https://img.shields.io/github/stars/Toby-Tao/xmu-ppt.svg)](https://github.com/Toby-Tao/xmu-ppt/stargazers)
 
 **简体中文** · [English](README.md)
 
 把主题、提纲或现有材料，整理成厦大风格的演示文稿。由 AI Agent 逐页排版，导出**文字可编辑**的 `.pptx`。基于 [PPT Master](https://github.com/hugohe3/ppt-master) 的 SVG → PPTX 引擎，增补 15 套厦大模板与三条出稿路线。
 
-**[选择视觉模板](https://longfei-tao.github.io/xmu-ppt/templates/)** · **[在线逐页预览](https://longfei-tao.github.io/xmu-ppt/)** · [使用教程](#使用教程) · [快速开始](docs/quickstart.md) · [模板风格](docs/templates.md) · [常见问题](docs/faq.md) · [选择你的 AI 工具](docs/tools/README.md)
+**[选择视觉模板](https://toby-tao.github.io/xmu-ppt/templates/)** · **[在线逐页预览](https://toby-tao.github.io/xmu-ppt/)** · [使用教程](#使用教程) · [快速开始](docs/quickstart.md) · [模板风格](docs/templates.md) · [常见问题](docs/faq.md) · [选择你的 AI 工具](docs/tools/README.md)
 
 <table>
   <tr>
     <td align="center" width="33%">
-      <a href="https://longfei-tao.github.io/xmu-ppt/#defense/1"><img src="docs/assets/screenshots/defense-cover.webp" alt="厦园晴日硕士答辩稿封面" /></a><br/>
+      <a href="https://toby-tao.github.io/xmu-ppt/#defense/1"><img src="docs/assets/screenshots/defense-cover.webp" alt="厦园晴日硕士答辩稿封面" /></a><br/>
       <sub><b>厦园晴日</b> — 硕士答辩 14 页：校徽、校园照片与标题层级按模板还原</sub>
     </td>
     <td align="center" width="33%">
-      <a href="https://longfei-tao.github.io/xmu-ppt/#group/8"><img src="docs/assets/screenshots/report-content.webp" alt="南强蔚蓝组会汇报内容页" /></a><br/>
+      <a href="https://toby-tao.github.io/xmu-ppt/#group/8"><img src="docs/assets/screenshots/report-content.webp" alt="南强蔚蓝组会汇报内容页" /></a><br/>
       <sub><b>南强蔚蓝</b> — 组会汇报 11 页：正文版式按内容重排，不是每页套卡片</sub>
     </td>
     <td align="center" width="33%">
-      <a href="https://longfei-tao.github.io/xmu-ppt/#native/3"><img src="docs/assets/screenshots/native-chapter.webp" alt="凤凰花开原生填充章节页" /></a><br/>
+      <a href="https://toby-tao.github.io/xmu-ppt/#native/3"><img src="docs/assets/screenshots/native-chapter.webp" alt="凤凰花开原生填充章节页" /></a><br/>
       <sub><b>凤凰花开</b> — 原生填充 9 页：在原 PPTX 里换字，照片与色条不动</sub>
     </td>
   </tr>
 </table>
 
-<sub>三张图都是 PowerPoint 打开真实导出产物的截图，不是设计稿。[在线翻完这三套 →](https://longfei-tao.github.io/xmu-ppt/)</sub>
+<sub>三张图都是 PowerPoint 打开真实导出产物的截图，不是设计稿。[在线翻完这三套 →](https://toby-tao.github.io/xmu-ppt/)</sub>
 
 > 非官方个人项目，与厦门大学不存在已确认的授权或合作关系。代码与模板结构适用 [MIT](LICENSE)；校徽、照片、字体等不因此获得授权。部分既有素材的公开再分发条件仍[待核验](docs/assets.md)。
 
@@ -48,7 +48,7 @@
 
 每套内置模板有一个**固定的三位序号**（`001`–`015`）。序号只在末尾追加，不重排、不复用；说序号即可选模板，例如 `004` 指「光影厦大」。公开仓库不提供外部模板，使用者自备的模板只在各自本机登记与使用。
 
-[公开模板画廊](https://longfei-tao.github.io/xmu-ppt/templates/)只展示 **15 套内置模板**。第三方模板原件、封面与预览图均不进入公开仓库，也不通过本项目对外分发。
+[公开模板画廊](https://toby-tao.github.io/xmu-ppt/templates/)只展示 **15 套内置模板**。第三方模板原件、封面与预览图均不进入公开仓库，也不通过本项目对外分发。
 
 ## 三条路线
 
@@ -111,7 +111,7 @@
 在 Codex、Claude Code、Cursor、Copilot 的 Agent 模式或 Gemini CLI 中复制以下提示词。工具需要能访问网络、文件和终端。
 
 ```text
-请帮我安装 https://github.com/Longfei-Tao/xmu-ppt 的 xmu-ppt 技能。
+请帮我安装 https://github.com/Toby-Tao/xmu-ppt 的 xmu-ppt 技能。
 先读取仓库 README 和 skills/xmu-ppt/SKILL.md，判断当前 Agent 的技能目录。
 默认安装到当前项目，安装完整 skills/xmu-ppt 目录。
 如果共享技能由 CC Switch 管理，通过 CC Switch 维护和分发。
@@ -135,13 +135,13 @@
 **方式 A · Git（推荐，后续可一行命令更新）**
 
 ```bash
-git clone https://github.com/Longfei-Tao/xmu-ppt.git xmu-ppt
+git clone https://github.com/Toby-Tao/xmu-ppt.git xmu-ppt
 cd xmu-ppt
 ```
 
 **方式 B · 下载 ZIP（没装 Git 时用）**
 
-下载 [main.zip](https://github.com/Longfei-Tao/xmu-ppt/archive/refs/heads/main.zip) 并解压，进入解压出来的 `xmu-ppt-main` 目录。ZIP 版没有 git 历史，升级时重新下载覆盖，先备份自己改过的模板。
+下载 [main.zip](https://github.com/Toby-Tao/xmu-ppt/archive/refs/heads/main.zip) 并解压，进入解压出来的 `xmu-ppt-main` 目录。ZIP 版没有 git 历史，升级时重新下载覆盖，先备份自己改过的模板。
 
 ### 选对下载包
 
@@ -279,7 +279,7 @@ git pull
 15 套内置模板；使用者可把自己合法持有的模板放在本机，通过 `root.local.json` 登记，
 原件与预览都不会上传。
 
-> 技能包下载入口为 [`xmu-ppt-skill.zip`](https://github.com/Longfei-Tao/xmu-ppt/releases/latest/download/xmu-ppt-skill.zip)，大小与内容随版本变化。[查看全部 Release](https://github.com/Longfei-Tao/xmu-ppt/releases)。
+> 技能包下载入口为 [`xmu-ppt-skill.zip`](https://github.com/Toby-Tao/xmu-ppt/releases/latest/download/xmu-ppt-skill.zip)，大小与内容随版本变化。[查看全部 Release](https://github.com/Toby-Tao/xmu-ppt/releases)。
 
 | 你想做的事 | 怎么做 |
 | --- | --- |

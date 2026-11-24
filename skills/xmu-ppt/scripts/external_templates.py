@@ -35,7 +35,7 @@ SOURCE_MAP = EXTERNAL / "source_map.local.json"
 PACK_SCHEMA = "xmu_ppt_template_pack.v1"
 PACK_NAME = "xmu-ppt-templates.zip"
 DEFAULT_PACK_URL = (
-    "https://github.com/Longfei-Tao/xmu-ppt/releases/latest/download/" + PACK_NAME
+    "https://github.com/Toby-Tao/xmu-ppt/releases/latest/download/" + PACK_NAME
 )
 DEFAULT_IMPORT_ROOT = Path.home() / "xmu-ppt-templates"
 REPO_ROOT = HERE.parents[3]

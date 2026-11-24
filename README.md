@@ -5,35 +5,35 @@
 **A Xiamen University template library and PPTX workflow for AI agents.**
 Start with a topic or source material, confirm a content brief and a template, then export a `.pptx` with editable text. Native filling reuses existing layouts. SVG authoring supports custom page composition.
 
-[![Release](https://img.shields.io/github/v/release/Longfei-Tao/xmu-ppt?label=release&color=4661CC)](https://github.com/Longfei-Tao/xmu-ppt/releases)
+[![Release](https://img.shields.io/github/v/release/Toby-Tao/xmu-ppt?label=release&color=4661CC)](https://github.com/Toby-Tao/xmu-ppt/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](docs/quickstart.md)
 [![Templates](https://img.shields.io/badge/templates-15-4661CC)](docs/templates.md)
-[![CI](https://github.com/Longfei-Tao/xmu-ppt/actions/workflows/validate.yml/badge.svg)](https://github.com/Longfei-Tao/xmu-ppt/actions/workflows/validate.yml)
-[![GitHub stars](https://img.shields.io/github/stars/Longfei-Tao/xmu-ppt?style=social)](https://github.com/Longfei-Tao/xmu-ppt/stargazers)
+[![CI](https://github.com/Toby-Tao/xmu-ppt/actions/workflows/validate.yml/badge.svg)](https://github.com/Toby-Tao/xmu-ppt/actions/workflows/validate.yml)
+[![GitHub stars](https://img.shields.io/github/stars/Toby-Tao/xmu-ppt?style=social)](https://github.com/Toby-Tao/xmu-ppt/stargazers)
 
-[简体中文](README.zh-CN.md) · [Template gallery](https://longfei-tao.github.io/xmu-ppt/templates/) · [Slide-by-slide preview](https://longfei-tao.github.io/xmu-ppt/) · [Usage tutorial](#usage-tutorial) · [Quick start](#quick-start) · [FAQ](docs/faq.md)
+[简体中文](README.zh-CN.md) · [Template gallery](https://toby-tao.github.io/xmu-ppt/templates/) · [Slide-by-slide preview](https://toby-tao.github.io/xmu-ppt/) · [Usage tutorial](#usage-tutorial) · [Quick start](#quick-start) · [FAQ](docs/faq.md)
 
 </div>
 
 <table>
   <tr>
     <td align="center" width="33%">
-      <a href="https://longfei-tao.github.io/xmu-ppt/#defense/1"><img src="docs/assets/screenshots/defense-cover.webp" alt="Thesis defense cover, Xiayuan Qingri template" /></a><br/>
+      <a href="https://toby-tao.github.io/xmu-ppt/#defense/1"><img src="docs/assets/screenshots/defense-cover.webp" alt="Thesis defense cover, Xiayuan Qingri template" /></a><br/>
       <sub><b>Xiayuan Qingri</b> — 14-slide defense deck: emblem, campus photography and type scale kept</sub>
     </td>
     <td align="center" width="33%">
-      <a href="https://longfei-tao.github.io/xmu-ppt/#group/8"><img src="docs/assets/screenshots/report-content.webp" alt="Group meeting content slide, Nanqiang Weilan template" /></a><br/>
+      <a href="https://toby-tao.github.io/xmu-ppt/#group/8"><img src="docs/assets/screenshots/report-content.webp" alt="Group meeting content slide, Nanqiang Weilan template" /></a><br/>
       <sub><b>Nanqiang Weilan</b> — 11-slide group report: body layouts recomposed per page, not card grids</sub>
     </td>
     <td align="center" width="33%">
-      <a href="https://longfei-tao.github.io/xmu-ppt/#native/3"><img src="docs/assets/screenshots/native-chapter.webp" alt="Native-filled chapter slide, Phoenix Flower template" /></a><br/>
+      <a href="https://toby-tao.github.io/xmu-ppt/#native/3"><img src="docs/assets/screenshots/native-chapter.webp" alt="Native-filled chapter slide, Phoenix Flower template" /></a><br/>
       <sub><b>Phoenix Flower</b> — 9 slides filled inside the original PPTX; photos and bars untouched</sub>
     </td>
   </tr>
 </table>
 
-<sub>All three are PowerPoint screenshots of real exported files, not design mockups. [Flip through them online →](https://longfei-tao.github.io/xmu-ppt/)</sub>
+<sub>All three are PowerPoint screenshots of real exported files, not design mockups. [Flip through them online →](https://toby-tao.github.io/xmu-ppt/)</sub>
 
 > **Unofficial personal project.** Not affiliated with, endorsed by, or licensed by Xiamen University. Code and template structure are [MIT](LICENSE); the university emblem, campus photographs and fonts are **not** covered by that license. Redistribution status for some existing assets is still [under review](docs/assets.md).
 
@@ -95,7 +95,7 @@ The private library belongs to the agent's execution environment. Convert legacy
 Paste this into Codex, Claude Code, Cursor, Copilot Agent mode or Gemini CLI with terminal access.
 
 ```text
-Set up https://github.com/Longfei-Tao/xmu-ppt as a project-scoped skill
+Set up https://github.com/Toby-Tao/xmu-ppt as a project-scoped skill
 for the agent I am using. Inspect the repository README and
 skills/xmu-ppt/SKILL.md first. Use the entire skills/xmu-ppt directory.
 If CC Switch manages my shared skills, use that source of truth.
@@ -117,16 +117,16 @@ Installation directories and invocation differ by host. [Agent setup and copyabl
 ### 1. Clone
 
 ```bash
-git clone https://github.com/Longfei-Tao/xmu-ppt.git xmu-ppt
+git clone https://github.com/Toby-Tao/xmu-ppt.git xmu-ppt
 cd xmu-ppt
 ```
 
-Without Git, download [main.zip](https://github.com/Longfei-Tao/xmu-ppt/archive/refs/heads/main.zip) and work inside the extracted `xmu-ppt-main` folder.
+Without Git, download [main.zip](https://github.com/Toby-Tao/xmu-ppt/archive/refs/heads/main.zip) and work inside the extracted `xmu-ppt-main` folder.
 
 | Download | Contents | Intended use |
 | --- | --- | --- |
 | Git clone or GitHub source ZIP | Full repository, 15 built-in decks, 14 source PPTX files, examples and tests | Try the included XMU templates |
-| [Release skill-only ZIP](https://github.com/Longfei-Tao/xmu-ppt/releases/latest/download/xmu-ppt-skill.zip) | Scripts, workflows, layout definitions and documentation, with originals and display images excluded by the packager | Supply your own template files |
+| [Release skill-only ZIP](https://github.com/Toby-Tao/xmu-ppt/releases/latest/download/xmu-ppt-skill.zip) | Scripts, workflows, layout definitions and documentation, with originals and display images excluded by the packager | Supply your own template files |
 
 The skill-only ZIP extracts to `xmu-ppt/skills/xmu-ppt/SKILL.md`. Use the **inner** `skills/xmu-ppt/` as the skill folder. Its built-in native sources and template images are absent, so add your own PPTX with `user_templates.py onboard` before using that workflow. Download availability and contents depend on the published release. The commands below use the full repository.
 
@@ -234,7 +234,7 @@ Every deck has a **permanent three-digit serial**. Serials are append-only: addi
 
 </details>
 
-Browse all 15 built-in covers in the **[template gallery](https://longfei-tao.github.io/xmu-ppt/templates/)** · [full index](docs/templates.md) (Chinese). All decks are 16:9 at 1280×720.
+Browse all 15 built-in covers in the **[template gallery](https://toby-tao.github.io/xmu-ppt/templates/)** · [full index](docs/templates.md) (Chinese). All decks are 16:9 at 1280×720.
 
 > **Optional private library.** The public repository distributes only the 15 built-in decks; third-party template originals and their covers are deliberately not published. If you have your own legally obtained collection, point `root.local.json` at that local folder and run `external_templates.py scan`. Files stay on your machine and are never uploaded by this project.
 

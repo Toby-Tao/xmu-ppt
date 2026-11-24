@@ -1,6 +1,6 @@
 # 第三方声明 / Third-Party Notices
 
-> 2026-10-31 核验补充：校方网站提供部分同名模板和 VI 下载入口，但尚未确认本仓库逐文件来源及公开再分发许可。下文的校内非商业范围是仓库边界说明，不是学校授予本项目的许可。记录见 [素材核验清单](https://github.com/Longfei-Tao/xmu-ppt/blob/main/docs/assets.md)。
+> 2026-10-31 核验补充：校方网站提供部分同名模板和 VI 下载入口，但尚未确认本仓库逐文件来源及公开再分发许可。下文的校内非商业范围是仓库边界说明，不是学校授予本项目的许可。记录见 [素材核验清单](https://github.com/Toby-Tao/xmu-ppt/blob/main/docs/assets.md)。
 
 ## 1. 上游代码
 
