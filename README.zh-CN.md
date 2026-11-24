@@ -170,7 +170,7 @@ python3 -m venv .venv
 
 ### 项目安装并显示使用提示
 
-从仓库根目录运行下面的安装入口，成功后会在终端直接显示简短用法和批量模板入库提示。按当前 Agent 选择一条。
+从仓库根目录运行下面的安装入口，成功后会在终端直接显示简短用法和批量模板入库提示（含入库后进入推荐清单与“我的模板”画廊的说明）。按当前 Agent 选择一条。
 
 ```bash
 python skills/xmu-ppt/scripts/install_skill.py --agent codex

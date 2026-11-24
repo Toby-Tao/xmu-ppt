@@ -43,7 +43,7 @@ python skills/xmu-ppt/scripts/install_skill.py --agent codex
 
 把 `codex` 换成 `claude-code`、`cursor`、`github-copilot` 或 `gemini-cli` 即可选择宿主。目标为当前项目的技能目录，`--project` 指向其他已存在的项目，`--lang en` 显示英文。同名条目会使安装停止。
 
-此入口成功后会直接输出“说需求 → 确认内容 → 选模板 → 接收 PPTX”的说明，以及上传一批自备模板的示例。它只安装技能文件，Python 依赖、宿主发现与实际导出分别验收。
+此入口成功后会直接输出“说需求 → 确认内容 → 选模板 → 接收 PPTX”的说明，以及上传一批自备模板的示例；示例会说明入库后的模板进入推荐清单和“我的模板”画廊，报 U 编号即可选用。它只安装技能文件，Python 依赖、宿主发现与实际导出分别验收。
 
 Agent 代为安装时，安装提示词要求它在完成后运行已安装技能的 `scripts/install_skill.py --guide` 并回显。通过第三方安装器安装时，其结束界面由该安装器控制。首次启用本技能也有简短引导规则，完整教程随包位于 [GETTING_STARTED.md](../../skills/xmu-ppt/GETTING_STARTED.md)。
 

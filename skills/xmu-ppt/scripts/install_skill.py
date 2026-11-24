@@ -75,6 +75,8 @@ def show_guide(skill_dir: Path, language: str = 'zh') -> None:
 3. Have your own templates? Attach the PPTX files and say:
    "I have permission to use these templates. Add all of them to My Templates,
    then list their U identifiers, names, page counts and any failed imports."
+   Imported templates join the recommendation list and the My Templates gallery;
+   choose one later by its U identifier (for example U001).
 4. The agent checks Python dependencies. requirements-core.txt is inside this skill.
    Restart or reload your agent and check skill discovery. Trust the workspace when required.''')
     else:
@@ -83,6 +85,7 @@ def show_guide(skill_dir: Path, language: str = 'zh') -> None:
 2. 确认内容策划案，选择模板，随后接收可编辑的 PPTX。
 3. 有自己的模板？上传一批 PPTX，并发送：
    “这些模板我有权使用，请逐份入库并加入我的模板库，列出 U 编号、名称、页数和失败项。”
+   入库后会进入模板推荐清单和“我的模板”画廊，之后报 U 编号（如 U001）即可选用。
 4. Agent 会先检查 Python 依赖，核心依赖文件为本技能中的 requirements-core.txt。
    重新打开或重载 Agent 后核对技能发现，需要时完成工作区信任确认。''')
     print(f'GETTING_STARTED.md  {skill_dir / "GETTING_STARTED.md"}')

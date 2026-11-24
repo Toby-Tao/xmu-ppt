@@ -54,7 +54,8 @@ class SkillInstallationTests(unittest.TestCase):
             code = self.installer.main(['--agent', 'codex', '--project', str(project)])
         self.assertEqual(code, 0)
         for text in ('技能文件已安装', '简单使用', '模板', '入库', '有权使用',
-                     '内容策划案', 'PPTX', 'requirements-core.txt', 'GETTING_STARTED.md'):
+                     '推荐清单', '画廊', '内容策划案', 'PPTX', 'requirements-core.txt',
+                     'GETTING_STARTED.md'):
             self.assertIn(text, output.getvalue())
 
     def test_existing_skill_is_preserved_and_no_success_is_printed(self):
@@ -142,6 +143,8 @@ class SkillInstallationTests(unittest.TestCase):
             self.assertEqual(self.installer.main(['--guide', '--lang', 'en']), 0)
         self.assertIn('Getting started', output.getvalue())
         self.assertIn('templates', output.getvalue())
+        self.assertIn('My Templates gallery', output.getvalue())
+        self.assertIn('U001', output.getvalue())
 
 
 if __name__ == '__main__':
