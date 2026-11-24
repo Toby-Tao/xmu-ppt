@@ -43,7 +43,16 @@ except ImportError:
 
 TOOLS_DIR = Path(__file__).resolve().parent
 SKILL_DIR = TOOLS_DIR.parent
-REPO_ROOT = SKILL_DIR.parent.parent
+
+
+def _detect_repo_root(skill_dir: Path) -> Path:
+    candidate = skill_dir.resolve().parent.parent
+    if (candidate / "scripts" / "pack_release.py").is_file():
+        return candidate
+    return Path.cwd()
+
+
+REPO_ROOT = _detect_repo_root(SKILL_DIR)
 SOURCE_DIRNAME = "sources"
 TEXT_SOURCE_SUFFIXES = {".md", ".markdown", ".txt"}
 TABLE_TEXT_SUFFIXES = {".csv", ".tsv"}

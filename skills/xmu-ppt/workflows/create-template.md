@@ -56,7 +56,7 @@ Branch by the type of reference source the user supplied. This step produces ana
 Run the unified preparation helper:
 
 ```bash
-python3 skills/xmu-ppt/scripts/pptx_template_import.py "<reference_template.pptx>"
+python3 ${SKILL_DIR}/scripts/pptx_template_import.py "<reference_template.pptx>"
 ```
 
 This produces, in one workspace:
@@ -87,10 +87,10 @@ Before the Template_Designer reads imported SVGs, factor large decorative vector
 
 ```bash
 # standard / fidelity analysis path
-python3 skills/xmu-ppt/scripts/extract_svg_assets.py "<import_workspace>/svg" --icons-dir "<import_workspace>/icons" --inplace --id-prefix layered --min-decoration-bytes 3000 --clean-stale
+python3 ${SKILL_DIR}/scripts/extract_svg_assets.py "<import_workspace>/svg" --icons-dir "<import_workspace>/icons" --inplace --id-prefix layered --min-decoration-bytes 3000 --clean-stale
 
 # mirror path
-python3 skills/xmu-ppt/scripts/extract_svg_assets.py "<import_workspace>/svg-flat" --icons-dir "<import_workspace>/icons" --inplace --id-prefix flat --min-decoration-bytes 3000 --clean-stale
+python3 ${SKILL_DIR}/scripts/extract_svg_assets.py "<import_workspace>/svg-flat" --icons-dir "<import_workspace>/icons" --inplace --id-prefix flat --min-decoration-bytes 3000 --clean-stale
 ```
 
 The source SVGs in `<import_workspace>/svg/` / `<import_workspace>/svg-flat/` are rewritten in place with compact `<use data-icon="..."/>` placeholders. Extracted assets live directly under `<import_workspace>/icons/`; `icons/` must contain only icon/vector assets, not rewritten page SVGs or inventories. The inventory is written beside the processed SVG directory (for example `<import_workspace>/svg_vector_asset_inventory.json`). The existing icon embedding path re-inlines the extracted assets before final export, preserving multi-color artwork and non-square viewBox geometry as native SVG shapes. Text-bearing groups are never extracted; text must stay readable/editable in the working SVG. Extraction triggers on either many drawable elements or a large pure-vector XML block, so long single-path illustrations are factored out too. Pure-vector decoration runs inside text-bearing groups use a lower size threshold, allowing card borders and decorative paths to be extracted without hiding text. Referenced defs (`gradient` / `pattern` / `filter` / `clipPath` / `marker`) are copied into each asset and namespaced so the asset is self-contained after re-inline. If both layered and flat views are processed into the same icon directory, keep distinct `--id-prefix` values to avoid asset ID collisions. `--clean-stale` removes only stale generated assets for the current SVG filenames and prefix; it is safe in this import workspace but should not be used against a shared hand-curated icon directory without a specific prefix.
@@ -133,7 +133,7 @@ Do **not** treat the imported PPTX or exported slide SVGs as direct final templa
 If the source SVG directory contains complex vector blobs, first copy the SVG files into a throwaway analysis workspace and run the same readability pass there. Do **not** rewrite the user's original source directory in place.
 
 ```bash
-python3 skills/xmu-ppt/scripts/extract_svg_assets.py "<svg_analysis_workspace>/svg" --icons-dir "<svg_analysis_workspace>/icons" --inplace --id-prefix source --min-decoration-bytes 3000 --clean-stale
+python3 ${SKILL_DIR}/scripts/extract_svg_assets.py "<svg_analysis_workspace>/svg" --icons-dir "<svg_analysis_workspace>/icons" --inplace --id-prefix source --min-decoration-bytes 3000 --clean-stale
 ```
 
 Then `ls` the analysis workspace and `Read` every cleaned `*.svg` to extract:
@@ -298,7 +298,7 @@ ls -la "skills/xmu-ppt/templates/<kind_dir>/<template_id>"
 Run SVG validation on the template directory:
 
 ```bash
-python3 skills/xmu-ppt/scripts/svg_quality_checker.py "skills/xmu-ppt/templates/<kind_dir>/<template_id>" --template-mode --format <canvas_format>
+python3 ${SKILL_DIR}/scripts/svg_quality_checker.py "skills/xmu-ppt/templates/<kind_dir>/<template_id>" --template-mode --format <canvas_format>
 ```
 
 `--template-mode` makes the checker:
@@ -331,10 +331,10 @@ Run the unified registrar with the kind flag; it derives the corresponding index
 
 ```bash
 # For deck (default)
-python3 skills/xmu-ppt/scripts/register_template.py <template_id> --kind deck
+python3 ${SKILL_DIR}/scripts/register_template.py <template_id> --kind deck
 
 # For layout
-python3 skills/xmu-ppt/scripts/register_template.py <template_id> --kind layout
+python3 ${SKILL_DIR}/scripts/register_template.py <template_id> --kind layout
 ```
 
 Outputs by kind (the JSON index is the single source of truth — READMEs describe the kind in prose but do not enumerate templates):
@@ -376,8 +376,8 @@ The index file is a **discovery index** — it lets the AI answer "what template
 > To rebuild every entry at once (e.g. after editing many specs), run:
 >
 > ```bash
-> python3 skills/xmu-ppt/scripts/register_template.py --kind deck --rebuild-all
-> python3 skills/xmu-ppt/scripts/register_template.py --kind layout --rebuild-all
+> python3 ${SKILL_DIR}/scripts/register_template.py --kind deck --rebuild-all
+> python3 ${SKILL_DIR}/scripts/register_template.py --kind layout --rebuild-all
 > ```
 
 README files describe each kind in prose only — they do not list templates. Discovery happens against the JSON index file; the registrar does not touch READMEs.

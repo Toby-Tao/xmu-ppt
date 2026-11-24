@@ -34,8 +34,19 @@ REFERENCES_DIR = PROJECT_ROOT / 'references'
 TEMPLATES_DIR = PROJECT_ROOT / 'templates'
 WORKFLOWS_DIR = PROJECT_ROOT / 'workflows'
 
-# Repository root directory
-REPO_ROOT = PROJECT_ROOT.parent.parent
+# Repository root directory.
+# A source checkout keeps examples/, projects/ and local-gallery/ at the repo
+# root. Installed skills (e.g. <project>/.claude/skills/xmu-ppt) have no such
+# root: use the current working directory instead of the parent of the host's
+# skill directory.
+def _detect_repo_root(skill_root: Path) -> Path:
+    candidate = skill_root.resolve().parent.parent
+    if (candidate / 'scripts' / 'pack_release.py').is_file():
+        return candidate
+    return Path.cwd()
+
+
+REPO_ROOT = _detect_repo_root(PROJECT_ROOT)
 EXAMPLES_DIR = REPO_ROOT / 'examples'
 PROJECTS_DIR = REPO_ROOT / 'projects'
 

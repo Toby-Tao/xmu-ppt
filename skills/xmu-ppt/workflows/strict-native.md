@@ -29,11 +29,13 @@
 8. **出稿 + 自动校验**：`apply` 生成 PPTX 并立即跑白名单比对；不通过直接报错，不交付。
 9. **交付**：只给本机 PPTX，附版权与推广文字提示。
 
-### 具体命令（在仓库根目录执行）
+### 具体命令（使用技能目录的绝对路径）
 
 ```bash
-PY=.venv/Scripts/python.exe
-S=skills/xmu-ppt/scripts/strict_native.py
+# 先取得可用解释器（最后一行输出路径），再把它代入 PY
+python "${SKILL_DIR}/scripts/bootstrap_env.py" --python
+PY=<上一步输出的解释器路径>
+S=${SKILL_DIR}/scripts/strict_native.py
 
 $PY $S doctor
 $PY $S inspect MED-001 -o output/inspect-MED-001.json
@@ -113,5 +115,5 @@ $PY $S verify MED-001 output/strict-native/MED-001.pptx \
 2. `apply` 输出「校验通过：N 页同序，M 个部件中仅 K 个变化」，且 K = 被点名改文案的页数 +（授权的）被换图片数。
 3. `verify` 返回 `ok: true`、`errors: []`。
 4. 用 PowerPoint 实际打开成品，逐页比对第 1/2/3/4 页：背景、图形、装饰、图片、占位区位置与原件一致，只有点名文字不同。
-5. 回归测试：`.venv/Scripts/python.exe -B -m unittest discover -s tests -q` 全绿（含 `test_strict_native.py` 的 9 项）。
+5. 回归测试（仅源码仓库维护者）：在仓库根目录运行 `python -B -m unittest discover -s tests -q` 全绿（含 `test_strict_native.py` 的 9 项）。
 6. 回退验证：把 `strict_native` 置回 `false`，`apply` 立即拒绝；内置 15 套与 SVG 出稿不受影响。

@@ -106,9 +106,11 @@ $PY $S build output/plan.json -o output/成品.pptx
 ## 四、命令速查
 
 ```bash
-PY=.venv/Scripts/python.exe
-S=skills/xmu-ppt/scripts/idea_to_ppt.py
-C=skills/xmu-ppt/scripts/sanitize_pptx.py
+# 先取得可用解释器（最后一行输出路径），再把它代入 PY
+python "${SKILL_DIR}/scripts/bootstrap_env.py" --python
+PY=<上一步输出的解释器路径>
+S=${SKILL_DIR}/scripts/idea_to_ppt.py
+C=${SKILL_DIR}/scripts/sanitize_pptx.py
 
 $PY $S brief --idea "..." --positioning "..." -o output/brief.json   # 第1步：内容草稿
 $PY $S brief --file output/brief.json --confirm                      # 用户确认

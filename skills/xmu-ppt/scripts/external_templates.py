@@ -38,7 +38,12 @@ DEFAULT_PACK_URL = (
     "https://github.com/Toby-Tao/xmu-ppt/releases/latest/download/" + PACK_NAME
 )
 DEFAULT_IMPORT_ROOT = Path.home() / "xmu-ppt-templates"
-REPO_ROOT = HERE.parents[3]
+_REPO_CANDIDATE = HERE.parents[3]
+REPO_ROOT = (
+    _REPO_CANDIDATE
+    if (_REPO_CANDIDATE / "scripts" / "build_local_gallery.py").is_file()
+    else Path.cwd()
+)
 GALLERY_BUILDER = REPO_ROOT / "scripts" / "build_local_gallery.py"
 
 PROMO_KEYWORDS = ("定制", "工作室", "购买", "会员", "微信", "二维码", "加群", "淘宝")

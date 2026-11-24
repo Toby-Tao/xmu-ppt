@@ -26,8 +26,9 @@ from urllib.parse import quote
 
 SCRIPTS = Path(__file__).resolve().parent
 SKILL_ROOT = SCRIPTS.parent
-REPO = SKILL_ROOT.parents[1]
 sys.path.insert(0, str(SCRIPTS))
+
+from config import REPO_ROOT as REPO  # noqa: E402
 
 from template_fill_pptx.analyzer import analyze_pptx  # noqa: E402
 from template_fill_pptx.applier import apply_plan  # noqa: E402

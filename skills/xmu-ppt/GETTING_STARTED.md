@@ -26,6 +26,16 @@ Agent 会检查依赖与可用模板，整理内容，等待内容确认与模�
 
 只上传文件时，Agent 应先确认它们的用途和使用权。旧 `.ppt` 需另存为 `.pptx`，损坏文件与 `.pptm` 宏模板会被拒绝。单份失败后继续检查其余文件，最后汇总结果。
 
+## 先准备 Python 环境
+
+技能包本身不带虚拟环境，安装到项目技能目录后也不能假定仓库根目录或 `.venv` 存在。首次使用前，在技能目录下运行：
+
+```bash
+python "<技能目录>/scripts/bootstrap_env.py" --python
+```
+
+它会复用已可用的解释器；缺少 `python-pptx`、Pillow、PyYAML 等核心依赖时，自动在 `~/.xmu-ppt/venv` 创建环境并安装 `requirements-core.txt`，最后一行输出解释器路径。之后的命令都用这个解释器，并把脚本写成 `<技能目录>/scripts/...`。
+
 ## 安装后先检查
 
 技能目录需要包含 `SKILL.md`、`scripts/`、`workflows/` 和模板资源。Python 3.10+ 的核心依赖见同目录 `requirements-core.txt`。重新打开或重载 Agent，确认它发现了 `xmu-ppt`。Gemini 的工作区技能需要目录受信任。
@@ -40,4 +50,4 @@ Ask your agent to use `xmu-ppt`, provide the topic, audience, source material an
 
 To add your own templates, attach the PPTX files and say “I have permission to use these templates. Add all of them to My Templates and list their U identifiers, names, page counts and any failed imports.” Successfully imported templates remain selectable even when absent from the initial shortlist.
 
-Install core Python dependencies from `requirements-core.txt`, then reload your agent and verify skill discovery. The skill-only Release needs user-supplied template files. Run `scripts/install_skill.py --guide --lang en` for the short English guide. Details are in [user-template onboarding](workflows/user-template-onboarding.md).
+Install core Python dependencies from `requirements-core.txt`; installed copies do not include a virtual environment. Run `python "<skill-dir>/scripts/bootstrap_env.py" --python` to reuse a working interpreter or create `~/.xmu-ppt/venv`, then reload your agent and verify skill discovery. The skill-only Release needs user-supplied template files. Run `scripts/install_skill.py --guide --lang en` for the short English guide. Details are in [user-template onboarding](workflows/user-template-onboarding.md).

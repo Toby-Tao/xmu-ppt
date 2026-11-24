@@ -33,8 +33,10 @@
 ## 二、命令
 
 ```bash
-PY=.venv/Scripts/python.exe
-U=skills/xmu-ppt/scripts/user_templates.py
+# 先取得可用解释器（最后一行输出路径），再把它代入 PY
+python "${SKILL_DIR}/scripts/bootstrap_env.py" --python
+PY=<上一步输出的解释器路径>
+U=${SKILL_DIR}/scripts/user_templates.py
 
 # 入库（推荐先复制；--link 只登记原路径）
 $PY $U onboard "D:\我的模板\组会模板.pptx" --name "我的组会模板" --rights-confirmed
@@ -45,7 +47,7 @@ $PY $U doctor
 $PY $U gallery
 ```
 
-macOS/Linux 把 `PY` 换成 `.venv/bin/python`，路径按实际目录替换。
+Windows、macOS 和 Linux 都使用 `bootstrap_env.py` 输出的解释器；`${SKILL_DIR}` 是技能根目录，不要假定 `.venv` 或仓库相对路径存在。
 
 ## 三、存储位置
 
@@ -88,7 +90,7 @@ macOS/Linux 把 `PY` 换成 `.venv/bin/python`，路径按实际目录替换。
 ## 六、入库后怎么用
 
 ```bash
-S=skills/xmu-ppt/scripts/idea_to_ppt.py
+S=${SKILL_DIR}/scripts/idea_to_ppt.py
 
 $PY $S recommend --idea "本次组会汇报" --positioning "课题组组会"
 # 候选清单会包含 U001

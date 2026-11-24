@@ -159,7 +159,7 @@ See [`../templates/icons/README.md`](../templates/icons/README.md) for the curre
 > 3. Enumerate the concepts the deck actually needs (home, chart, users, …) based on the confirmed outline.
 > 4. Search for each concept's filename in the chosen library: `ls skills/xmu-ppt/templates/icons/<chosen-library>/ | grep <keyword>`
 > 5. Use the verified filename (without `.svg`) as the icon name; always include the library prefix (e.g., `chunk-filled/home`).
-> 6. **Copy each chosen icon into the project as you confirm it** — `python3 skills/xmu-ppt/scripts/icon_sync.py <project_path> <lib/name> [<lib/name> …]`. This populates `<project>/icons/<lib>/` (the set the Executor embeds from) and, more importantly, **validates existence on the spot**.
+> 6. **Copy each chosen icon into the project as you confirm it** — `python3 ${SKILL_DIR}/scripts/icon_sync.py <project_path> <lib/name> [<lib/name> …]`. This populates `<project>/icons/<lib>/` (the set the Executor embeds from) and, more importantly, **validates existence on the spot**.
 > 7. List the final icon inventory and chosen library in `design_spec.md` §VI; record the same in `spec_lock.md icons` (including `stroke_width` for stroke-style libraries). Executor may only use icons from this list.
 >
 > 🚧 **GATE — missing icon = re-pick now**: if `icon_sync.py` reports any name as missing (non-zero exit), that icon is not in the library — re-pick a real filename via `ls … | grep`, fix `§VI` / `spec_lock.md`, and re-run until it exits clean. Never carry a missing icon forward to generation. Over-copying candidates is harmless — finalize embeds only the icons actually referenced by `<use data-icon>`.
@@ -307,7 +307,7 @@ Formula rendering is part of Typography confirmation. Recommend one policy and l
 
 ```bash
 mkdir -p <project_path>/images
-python3 skills/xmu-ppt/scripts/latex_render.py <project_path>
+python3 ${SKILL_DIR}/scripts/latex_render.py <project_path>
 ```
 
 Write the manifest first at `<project_path>/images/formula_manifest.json`. Use this shape:

@@ -7,6 +7,7 @@ import shutil
 import stat
 import sys
 import tempfile
+import time
 from pathlib import Path
 
 SKILL_DIR = Path(__file__).resolve().parents[1]
@@ -34,6 +35,30 @@ def _remove_readonly(function, path, error_info):
     function(path)
 
 
+def _retry_on_lock(function, *args, attempts: int = 3, delay: float = 0.5, **kwargs):
+    """Retry transient Windows sharing violations (antivirus, indexer, editor)."""
+    for attempt in range(attempts):
+        try:
+            return function(*args, **kwargs)
+        except PermissionError:
+            if attempt == attempts - 1:
+                raise
+            time.sleep(delay * (attempt + 1))
+
+
+def _copy_skill_tree(source: Path, staged: Path, ignore) -> None:
+    for attempt in range(3):
+        try:
+            shutil.copytree(source, staged, ignore=ignore)
+            return
+        except PermissionError:
+            if attempt == 2:
+                raise
+            if staged.exists():
+                shutil.rmtree(staged, onerror=_remove_readonly)
+            time.sleep(0.5 * (attempt + 1))
+
+
 def install(project: Path, agent: str) -> Path:
     project = project.expanduser().resolve()
     if not project.is_dir():
@@ -52,15 +77,15 @@ def install(project: Path, agent: str) -> Path:
 
     with tempfile.TemporaryDirectory(prefix='.xmu-ppt-install-', dir=project) as temporary:
         staged = Path(temporary) / 'xmu-ppt'
-        shutil.copytree(SKILL_DIR, staged, ignore=_ignore_local_files)
+        _copy_skill_tree(SKILL_DIR, staged, _ignore_local_files)
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.mkdir()
         try:
             for item in staged.iterdir():
                 if item.name != 'SKILL.md':
-                    item.rename(destination / item.name)
+                    _retry_on_lock(item.rename, destination / item.name)
             # Publish the discovery entry only after all supporting files exist.
-            (staged / 'SKILL.md').rename(destination / 'SKILL.md')
+            _retry_on_lock((staged / 'SKILL.md').rename, destination / 'SKILL.md')
         except BaseException:
             shutil.rmtree(destination, onerror=_remove_readonly)
             raise
@@ -68,6 +93,7 @@ def install(project: Path, agent: str) -> Path:
 
 
 def show_guide(skill_dir: Path, language: str = 'zh') -> None:
+    bootstrap = skill_dir / 'scripts' / 'bootstrap_env.py'
     if language == 'en':
         print('''Getting started with xmu-ppt
 1. Describe your topic, audience, slide count and source material to your agent.
@@ -78,7 +104,12 @@ def show_guide(skill_dir: Path, language: str = 'zh') -> None:
    Imported templates join the recommendation list and the My Templates gallery;
    choose one later by its U identifier (for example U001).
 4. The agent checks Python dependencies. requirements-core.txt is inside this skill.
-   Restart or reload your agent and check skill discovery. Trust the workspace when required.''')
+   Before the first run, resolve an interpreter:
+   python "{bootstrap}" --python
+   It reuses a working Python or creates ~/.xmu-ppt/venv and installs the core
+   dependencies. The last line is the interpreter path to use for all commands.
+   Restart or reload your agent and check skill discovery. Trust the workspace when required.'''.format(
+            bootstrap=bootstrap))
     else:
         print('''xmu-ppt 简单使用
 1. 直接告诉 Agent 主题、听众、页数，并提供材料。
@@ -87,7 +118,10 @@ def show_guide(skill_dir: Path, language: str = 'zh') -> None:
    “这些模板我有权使用，请逐份入库并加入我的模板库，列出 U 编号、名称、页数和失败项。”
    入库后会进入模板推荐清单和“我的模板”画廊，之后报 U 编号（如 U001）即可选用。
 4. Agent 会先检查 Python 依赖，核心依赖文件为本技能中的 requirements-core.txt。
-   重新打开或重载 Agent 后核对技能发现，需要时完成工作区信任确认。''')
+   首次使用前先取得解释器：python "{bootstrap}" --python
+   它会复用可用的 Python，或在 ~/.xmu-ppt/venv 安装核心依赖；最后一行就是后续命令要用的解释器路径。
+   重新打开或重载 Agent 后核对技能发现，需要时完成工作区信任确认。'''.format(
+            bootstrap=bootstrap))
     print(f'GETTING_STARTED.md  {skill_dir / "GETTING_STARTED.md"}')
 
 

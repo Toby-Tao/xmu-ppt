@@ -66,8 +66,8 @@ skills/xmu-ppt/templates/
 
 ```bash
 python scripts/check_brand_layout.py          # 仓库级：品牌层与模板层是否一致
-python skills/xmu-ppt/scripts/brand.py --check
-python skills/xmu-ppt/scripts/brand.py 厦门大学_主题_经典蓝白   # 看某套的品牌摘要
+python ${SKILL_DIR}/scripts/brand.py --check
+python ${SKILL_DIR}/scripts/brand.py 厦门大学_主题_经典蓝白   # 看某套的品牌摘要
 ```
 
 检查项：

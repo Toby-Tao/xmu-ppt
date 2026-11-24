@@ -22,7 +22,7 @@ description: >
 
 ## 首次启用与安装完成提示
 
-先阅读同目录 [GETTING_STARTED.md](GETTING_STARTED.md)。安装任务完成后，用已安装技能的实际路径执行 `scripts/install_skill.py --guide`，并把简短说明回显到对话中，同时分别报告文件安装、宿主发现、Python 依赖与示例导出的实际状态。
+先阅读同目录 [GETTING_STARTED.md](GETTING_STARTED.md)。安装任务完成后，用已安装技能的实际路径执行 `${SKILL_DIR}/scripts/install_skill.py --guide`，并把简短说明回显到对话中，同时分别报告文件安装、宿主发现、Python 依赖与示例导出的实际状态。
 
 每个新对话首次启用本技能，或用户说“安装好了”“怎么用”时，主动展示以下短说明，按用户语言表达。同一对话已展示时，按当前任务继续。
 
@@ -32,13 +32,24 @@ description: >
 
 收到一份或多份可读取的 PPTX 附件且用途不明确时，先清点附件，一次询问它们是用于模板入库、内容参考还是修改现有文稿。模板用途已明确时，只确认尚未说明的使用权。确认后逐份调用 `user_templates.py onboard`，处理全部文件，单份失败后继续处理其余文件，最后列出实际编号、名称、页数、重复项、失败原因和私有画廊入口。成功入库的全部模板均可按 U 编号选择，推荐清单受数量限制。详细规则见 [批量模板入库](workflows/user-template-onboarding.md)。
 
+## 环境与路径（安装后必读）
+
+技能可能被安装在项目技能目录（如 `.claude/skills/xmu-ppt`、`.agents/skills/xmu-ppt`），**不一定在源码仓库里**。每个新会话先确定：
+
+- **`SKILL_DIR`** = 本 `SKILL.md` 所在目录的绝对路径。不要假定当前工作目录就是技能目录。
+- **解释器**：先试 `python3`（Windows 也可用 `python`）。若导入核心依赖失败，运行
+  `python "${SKILL_DIR}/scripts/bootstrap_env.py" --python`
+  它会复用可用解释器，或在 `~/.xmu-ppt/venv` 创建环境并安装 `requirements-core.txt`，**最后一行输出解释器路径**。后续所有命令都使用这个路径。
+- **脚本路径**：一律写成 `${SKILL_DIR}/scripts/...`。不要运行 `skills/xmu-ppt/scripts/...` 这类仓库相对路径，也不要假定 `.venv` 存在。
+- **用户文件**：源文件和输出放在用户指定目录；没有指定时在当前项目下新建独立目录。
+
 > [!IMPORTANT]
 > ## ✅ 默认出稿流程（最高优先级，覆盖下方所有路线说明）
 >
 > 用户只要说明「**想法 + 主题定位**」时，一律按 [`workflows/idea-to-ppt.md`](workflows/idea-to-ppt.md) 执行，本区块优先于下方任何历史路线说明：
 >
-> 1. **内容策划案（推荐默认）**：调用 `scripts/idea_to_ppt.py brief` 生成一页纸草稿，列出每页目的、核心结论、证据来源和数据缺口；让用户确认后执行 `brief --file <path> --confirm`。用户明确说“赶时间/直接做”时可跳过，但要在交付说明中标注内容未确认。
-> 2. ⛔ **BLOCKING：模板推荐**：调用 `scripts/idea_to_ppt.py recommend --brief <brief.json>`，只输出**可点击的模板链接清单**，然后停下等待用户报出选定的**序号**（内置/外部三位数字，或本机模板 `U001`）。在此之前禁止制作任何页面、禁止写 fill plan、禁止出稿，也不得以「先做一版看看」为由提前开工。内置/外部三位序号是固定权威标识（`templates/external/number_registry.json`）：固定、唯一、末尾追加、不重排不复用；`004` = 光影厦大，与模板 ID `MED-004`（序号 019）不可混淆，纯数字一律按序号解析；用户自备模板用独立的 `U001` 前缀。
+> 1. **内容策划案（推荐默认）**：调用 `${SKILL_DIR}/scripts/idea_to_ppt.py brief` 生成一页纸草稿，列出每页目的、核心结论、证据来源和数据缺口；让用户确认后执行 `brief --file <path> --confirm`。用户明确说“赶时间/直接做”时可跳过，但要在交付说明中标注内容未确认。
+> 2. ⛔ **BLOCKING：模板推荐**：调用 `${SKILL_DIR}/scripts/idea_to_ppt.py recommend --brief <brief.json>`，只输出**可点击的模板链接清单**，然后停下等待用户报出选定的**序号**（内置/外部三位数字，或本机模板 `U001`）。在此之前禁止制作任何页面、禁止写 fill plan、禁止出稿，也不得以「先做一版看看」为由提前开工。内置/外部三位序号是固定权威标识（`templates/external/number_registry.json`）：固定、唯一、末尾追加、不重排不复用；`004` = 光影厦大，与模板 ID `MED-004`（序号 019）不可混淆，纯数字一律按序号解析；用户自备模板用独立的 `U001` 前缀。
 > 3. 用户选定后执行 `confirm`，再用 `pages --brief <brief.json>` 查看该模板**每一页的版式、内容形态和匹配建议**，按内容需要挑最合适的页面组合；**页数不设固定限制**，由内容策划案与模板可用页面决定。内置模板的 `pages` 输出还带 `brand` 块（品牌色板、标题/正文字体、校徽规则）：显式指定文字颜色时只能从 `brand.palette` 里取，否则 `build` 会在「模板一致性」报警告；不写颜色则沿用原槽位色。
 > 4. **只负责内容填充与检查**：克隆模板已有页面、只替换文字；禁止自行设计页面、禁止改动版式与视觉样式、禁止使用 SVG 逐页重画路线、禁止编造数据与引用。plan 必须带 `brief_sha256`，内容改了要重新确认模板。
 > 5. `build` 会强制门禁校验、剥离音乐与自动翻页，并做**内容完整性 / 文字适配布局 / 模板一致性**三项检查，未通过不交付。
@@ -51,7 +62,7 @@ description: >
 > 用户说“把这个 PPTX 加入我的模板 / 用我自己的模板”时，执行：
 >
 > ```bash
-> python skills/xmu-ppt/scripts/user_templates.py onboard "路径/模板.pptx" --name "我的模板" --rights-confirmed
+> python "${SKILL_DIR}/scripts/user_templates.py" onboard "路径/模板.pptx" --name "我的模板" --rights-confirmed
 > ```
 >
 > 脚本会检查 `.pptx`、复制到 `~/.xmu-ppt/user-templates/U001/`（`--link` 可只登记原路径）、分析页面、生成页面目录和封面、分配 `U001` 序号，并生成 `~/.xmu-ppt/user-templates/index.html`。之后 `recommend`、`confirm U001`、`pages U001`、`build` 都可以直接使用。

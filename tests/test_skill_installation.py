@@ -58,6 +58,22 @@ class SkillInstallationTests(unittest.TestCase):
                      'GETTING_STARTED.md'):
             self.assertIn(text, output.getvalue())
 
+    def test_transient_publish_lock_is_retried(self):
+        project = self.folder / 'project'
+        project.mkdir()
+        original = Path.rename
+        calls = {'count': 0}
+
+        def flaky(path, target):
+            if path.name == 'SKILL.md' and calls['count'] == 0:
+                calls['count'] += 1
+                raise PermissionError('locked by another process')
+            return original(path, target)
+
+        with mock.patch.object(Path, 'rename', new=flaky):
+            destination = self.installer.install(project, 'codex')
+        self.assertTrue((destination / 'SKILL.md').is_file())
+
     def test_existing_skill_is_preserved_and_no_success_is_printed(self):
         project = self.folder / 'project'
         target = project / '.agents/skills/xmu-ppt'
